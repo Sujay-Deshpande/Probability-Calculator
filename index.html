@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Probability Distribution Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="probability.js"></script>
+</head>
+<body>
+	<nav>
+		<div class="nav-container">
+			<h1>Probability Calculator</h1>
+		</div>
+	</nav>
+
+	<div class="calculator-container" id="binomial-container">
+		<h2>Binomial Distribution</h2>
+		<table>
+			<tr>
+				<td>Number of trials (n):</td>
+				<td><input type="number" id="binomialN" min="1"></td>
+			</tr>
+			<tr>
+				<td>Probability of success (p):</td>
+				<td><input type="number" id="binomialP" min="0" max="1" step="0.01"></td>
+			</tr>
+			<tr>
+				<td>Number of successes (x):</td>
+				<td><input type="number" id="binomialX" min="0"></td>
+			</tr>
+		</table>
+		<button onclick="calculateBinomial()">Calculate</button>
+		<br>
+		<p>Result: <span id="binomialResult"></span></p>
+	</div>
+
+	<div class="calculator-container" id="poisson-container">
+		<h2>Poisson's Distribution</h2>
+		<table>
+			<tr>
+				<td>Mean (λ):</td>
+				<td><input type="number" id="poissonLambda" min="0"></td>
+			</tr>
+			<tr>
+				<td>Number of occurrences (x):</td>
+				<td><input type="number" id="poissonX" min="0"></td>
+			</tr>
+		</table>
+		<button onclick="calculatePoisson()">Calculate</button>
+		<br>
+		<p>Result: <span id="poissonResult"></span></p>
+	</div>
+</body>
+</html>
