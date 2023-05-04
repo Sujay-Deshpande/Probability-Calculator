@@ -1,57 +1,78 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+/* Navigation Bar Styles */
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #222;
-    color: #fff;
-    font-size: 1.5rem;
-  }
-  
-  nav h1 {
-    margin: 0;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropbtn {
-    background-color: #222;
-    color: #fff;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    margin-right: 1rem;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    min-width: 160px;
-    background-color: #f9f9f9;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    padding: 12px 16px;
-  }
-  
-  .dropdown-content a {
-    color: #222;
-    text-decoration: none;
-    display: block;
-    font-size: 1rem;
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #444;
-  }
-  
+  background-color: #1a1a1a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.nav-container h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+/* Calculator Container Styles */
+.calculator-container {
+  background-color: #f5f5f5;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 30px auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.calculator-container h2 {
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+.calculator-container table {
+  width: 100%;
+}
+
+.calculator-container td {
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+.calculator-container input[type="number"] {
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  font-size: 18px;
+  padding: 8px;
+  width: 100%;
+}
+
+.calculator-container button {
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.calculator-container button:hover {
+  background-color: #3e8e41;
+}
+
+.calculator-container p {
+  font-size: 18px;
+  margin: 20px 0 0;
+}
+
+.calculator-container span {
+  font-weight: bold;
+}
