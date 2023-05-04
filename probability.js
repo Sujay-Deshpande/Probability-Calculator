@@ -1,57 +1,82 @@
-// Binomial Distribution Calculation
 function calculateBinomial() {
-    const n = parseInt(document.getElementById("binomialN").value);
-    const p = parseFloat(document.getElementById("binomialP").value);
-    const x = parseInt(document.getElementById("binomialX").value);
-  
-    const result = binomialDistribution(n, p, x);
-  
-    document.getElementById("binomialResult").innerHTML = result;
-  }
-  
-  // Poisson's Distribution Calculation
-  function calculatePoisson() {
-    const lambda = parseFloat(document.getElementById("poissonLambda").value);
-    const x = parseInt(document.getElementById("poissonX").value);
-  
-    const result = poissonDistribution(lambda, x);
-  
-    document.getElementById("poissonResult").innerHTML = result;
-  }
-  
-  // Normal Distribution Calculation
-  function calculateNormal() {
-    const mean = parseFloat(document.getElementById("normalMean").value);
-    const stdDev = parseFloat(document.getElementById("normalStdDev").value);
-    const x = parseFloat(document.getElementById("normalX").value);
-  
-    const result = normalDistribution(mean, stdDev, x);
-  
-    document.getElementById("normalResult").innerHTML = result;
-  }
-  
-  // Event listener for drop-down menu selection
-  document.getElementById("distributionMethod").addEventListener("change", function() {
-    const selectedMethod = this.value;
-  
-    // Hide all tables and results
-    document.getElementById("binomialTable").style.display = "none";
-    document.getElementById("binomialResult").style.display = "none";
-    document.getElementById("poissonTable").style.display = "none";
-    document.getElementById("poissonResult").style.display = "none";
-    document.getElementById("normalTable").style.display = "none";
-    document.getElementById("normalResult").style.display = "none";
-  
-    // Show the selected table and result
-    if (selectedMethod === "binomial") {
-      document.getElementById("binomialTable").style.display = "table";
-      document.getElementById("binomialResult").style.display = "block";
-    } else if (selectedMethod === "poisson") {
-      document.getElementById("poissonTable").style.display = "table";
-      document.getElementById("poissonResult").style.display = "block";
-    } else if (selectedMethod === "normal") {
-      document.getElementById("normalTable").style.display = "table";
-      document.getElementById("normalResult").style.display = "block";
-    }
-  });
-  
+	let n = parseInt(document.getElementById("binomialN").value);
+	let p = parseFloat(document.getElementById("binomialP").value);
+	let x = parseInt(document.getElementById("binomialX").value);
+
+	if (isNaN(n) || isNaN(p) || isNaN(x)) {
+		document.getElementById("binomialResult").innerHTML = "Invalid input.";
+		return;
+	}
+
+	if (p < 0 || p > 1 || x < 0 || x > n) {
+		document.getElementById("binomialResult").innerHTML = "Invalid input.";
+		return;
+	}
+
+	let result = binomialProbability(n, p, x);
+
+	document.getElementById("binomialResult").innerHTML = result.toFixed(4);
+}
+
+function binomialProbability(n, p, x) {
+	let q = 1 - p;
+	let choose = factorial(n) / (factorial(x) * factorial(n - x));
+	let probability = choose * Math.pow(p,	x) * Math.pow(q, n - x);
+	return probability;
+}
+
+function calculatePoisson() {
+	let lambda = parseFloat(document.getElementById("poissonLambda").value);
+	let x = parseInt(document.getElementById("poissonX").value);
+
+	if (isNaN(lambda) || isNaN(x)) {
+		document.getElementById("poissonResult").innerHTML = "Invalid input.";
+		return;
+	}
+
+	if (lambda < 0 || x < 0) {
+		document.getElementById("poissonResult").innerHTML = "Invalid input.";
+		return;
+	}
+
+	let result = poissonProbability(lambda, x);
+
+	document.getElementById("poissonResult").innerHTML = result.toFixed(4);
+}
+
+function poissonProbability(lambda, x) {
+	let numerator = Math.pow(lambda, x) * Math.exp(-lambda);
+	let denominator = factorial(x);
+	let probability = numerator / denominator;
+	return probability;
+}
+
+function calculateNormal() {
+	let mean = parseFloat(document.getElementById("normalMean").value);
+	let stdDev = parseFloat(document.getElementById("normalStdDev").value);
+	let x = parseFloat(document.getElementById("normalX").value);
+
+	if (isNaN(mean) || isNaN(stdDev) || isNaN(x)) {
+		document.getElementById("normalResult").innerHTML = "Invalid input.";
+		return;
+	}
+
+	let result = normalProbability(mean, stdDev, x);
+
+	document.getElementById("normalResult").innerHTML = result.toFixed(4);
+}
+
+function normalProbability(mean, stdDev, x) {
+	let numerator = Math.exp(-Math.pow(x - mean, 2) / (2 * Math.pow(stdDev, 2)));
+	let denominator = stdDev * Math.sqrt(2 * Math.PI);
+	let probability = numerator / denominator;
+	return probability;
+}
+
+function factorial(n) {
+	if (n == 0) {
+		return 1;
+	} else {
+		return n * factorial(n - 1);
+	}
+}
